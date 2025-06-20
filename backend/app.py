@@ -1,7 +1,16 @@
 from flask import Flask, request, jsonify
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
+chrome_options = Options()
+chrome_options.add_argument("--headless")
+chrome_options.add_argument("--no-sandbox")
+chrome_options.add_argument("--disable-dev-shm-usage")
 
+# Use remote Selenium endpoint since this is a pre-installed Grid image
+driver = webdriver.Remote(
+    command_executor="http://localhost:4444/wd/hub",
+    options=chrome_options
+)
 app = Flask(__name__)
 
 @app.route("/")
@@ -24,7 +33,12 @@ def connect():
         chrome_options.add_argument("--no-sandbox")
         chrome_options.add_argument("--disable-dev-shm-usage")
 
-        driver = webdriver.Chrome(options=chrome_options)
+        driver = webdriver.Remote(
+            command_executor="http://localhost:4444/wd/hub",
+            options=chrome_options
+        )
+
+
         driver.get("https://www.linkedin.com")
         driver.quit()
 
