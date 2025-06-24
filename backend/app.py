@@ -33,10 +33,7 @@ def connect():
         chrome_options.add_argument("--no-sandbox")
         chrome_options.add_argument("--disable-dev-shm-usage")
 
-        driver = webdriver.Remote(
-            command_executor="http://localhost:4444/wd/hub",
-            options=chrome_options
-        )
+        driver = webdriver.Remote(options=chrome_options)
 
 
         driver.get("https://www.linkedin.com")
