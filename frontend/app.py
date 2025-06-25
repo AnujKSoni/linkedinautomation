@@ -23,7 +23,7 @@ if st.button("🚀 Send Requests"):
         "message": final_message
     }
     try:
-        response = requests.post("https://lazy-bottles-appear.loca.lt/api/connect", json=payload)
+        response = requests.post("https://light-wolves-buy.loca.lt/api/connect", json=payload)
         result = response.json()
         if response.status_code == 200:
             st.success(f"Sent {result.get('requests_sent')} requests!")
